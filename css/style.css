@@ -1040,6 +1040,12 @@ button {
   color: #fff;
 }
 
+.cart-item-from {
+  font-size: 12px;
+  color: var(--grey-light);
+  margin-top: 2px;
+}
+
 .cart-item-right .remove-btn {
   cursor: pointer;
 }

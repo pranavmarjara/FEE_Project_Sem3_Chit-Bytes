@@ -7,7 +7,7 @@
      - string -> number:  Number(), replace()
      - object { } and array push()
      - for loop to find same food
-     - confirm() dialog box
+     - && (AND) to check name + restaurant together
      - setTimeout
    ===================================================== */
 
@@ -27,20 +27,11 @@ function addToCart(button) {
 
   let cart = getCart();
 
-  // CART HAVE FOOD FROM OTHER RESTAURANT? ASK FIRST.
-  if (cart.length > 0 && cart[0].restaurant != restaurant) {
-    let ok = confirm("Your cart has food from " + cart[0].restaurant +
-                     ".\nClear it and add from " + restaurant + "?");
-    if (!ok) {
-      return;                       // CAVEMAN SAY NO. STOP.
-    }
-    cart = [];                      // THROW OLD FOOD
-  }
-
-  // SAME FOOD ALREADY IN CART? JUST ADD +1.
+  // CART CAN HAVE FOOD FROM MANY RESTAURANTS. NO PROBLEM.
+  // SAME FOOD FROM SAME RESTAURANT ALREADY IN CART? JUST ADD +1.
   let found = false;
   for (let i = 0; i < cart.length; i++) {
-    if (cart[i].name == name) {
+    if (cart[i].name == name && cart[i].restaurant == restaurant) {
       cart[i].qty = cart[i].qty + 1;
       found = true;
     }

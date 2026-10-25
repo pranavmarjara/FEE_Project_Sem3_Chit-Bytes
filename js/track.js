@@ -88,11 +88,11 @@ function startCountdown() {
 function showSummary(order) {
   // MAP: EVERY FOOD BECOME ONE LINE
   let lines = order.items.map(function (food) {
-    return `<p>${food.qty} x ${food.name} <span>₹${food.price * food.qty}</span></p>`;
+    return `<p>${food.qty} x ${food.name} (${food.restaurant}) <span>₹${food.price * food.qty}</span></p>`;
   });
 
   document.getElementById("summary").innerHTML = `
-    <h4>Order from ${order.items[0].restaurant}</h4>
+    <h4>Your order</h4>
     ${lines.join("")}
     <p class="summary-total">Total paid: ₹${order.total}</p>
     <p class="summary-time">Ordered at ${order.time}</p>`;

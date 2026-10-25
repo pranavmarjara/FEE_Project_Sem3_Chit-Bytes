@@ -44,6 +44,7 @@ function showCart() {
         <div>
           <span class="${dotClass}"></span>
           <span class="cart-item-name">${food.name}</span>
+          <div class="cart-item-from">from ${food.restaurant}</div>
           <div class="cart-item-price">₹${food.price} x ${food.qty} = ₹${food.price * food.qty}</div>
         </div>
         <div class="cart-item-right">
@@ -66,7 +67,7 @@ function showCart() {
   let toPay = itemTotal + DELIVERY_FEE + tax;
 
   box.innerHTML = `
-    <div class="cart-restaurant-name">Ordering from <strong>${cart[0].restaurant}</strong></div>
+    <div class="cart-restaurant-name">Ordering from <strong>${getRestaurantNames(cart)}</strong></div>
 
     ${rows.join("")}
 
@@ -78,6 +79,23 @@ function showCart() {
     </div>
 
     <button class="place-order-btn" onclick="placeOrder(${toPay})">Place Order · ₹${toPay}</button>`;
+}
+
+
+/* ---------- HELPER: ALL RESTAURANT NAMES, NO REPEAT ----------
+   CART: Pizza, Pizza, Momo  ->  "Pizza Point, Momo Magic"            */
+
+function getRestaurantNames(cart) {
+  let names = [];
+
+  for (let i = 0; i < cart.length; i++) {
+    let name = cart[i].restaurant;
+    if (names.includes(name) == false) {   // NOT IN LIST YET? ADD IT.
+      names.push(name);
+    }
+  }
+
+  return names.join(", ");
 }
 
 
